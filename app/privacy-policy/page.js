@@ -9,6 +9,7 @@ const page = () => {
 
   return (
     <>
+    
       <section className="rows bg-fixed privacy-banner">
         <div className="container">
           <div className="row">

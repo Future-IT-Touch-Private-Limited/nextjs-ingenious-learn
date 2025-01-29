@@ -158,6 +158,24 @@ const TrainingCalender = () => {
 
   return (
     <>
+     <head>
+        <title>Training Calendar - Ingenious Learn</title>
+        <meta name="description" content="View upcoming training sessions, workshops, and events at Ingenious Learn on our training calendar." />
+        <meta name="robots" content="index, follow" />
+        
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Training Calendar - Ingenious Learn" />
+        <meta property="og:description" content="Explore upcoming training events and workshops at Ingenious Learn. Find events and register today!" />
+        <meta property="og:image" content="/images/training-calendar-banner.jpg" />
+        <meta property="og:url" content="https://www.ingeniouslearn.com/training-calendar" />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Training Calendar - Ingenious Learn" />
+        <meta name="twitter:description" content="Browse our training calendar to find upcoming workshops and sessions offered by Ingenious Learn." />
+        <meta name="twitter:image" content="/images/training-calendar-banner.jpg" />
+      </head>
       <section className="rows bg-fixed training-banner" />
 
       <section className="breadcrumbs-main">

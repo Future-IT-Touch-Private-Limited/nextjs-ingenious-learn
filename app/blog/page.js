@@ -56,6 +56,20 @@ const Blog = () => {
   };
   return (
     <>
+    <head>
+        <title>Blog - Ingenious Learn</title>
+        <meta name="description" content="Stay updated with the latest news, tips, and tutorials from Ingenious Learn on various educational topics." />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Blog - Ingenious Learn" />
+        <meta property="og:description" content="Explore insightful articles, tutorials, and industry trends on education from Ingenious Learn." />
+        <meta property="og:image" content="/images/blog-banner.jpg" />
+        <meta property="og:url" content="https://www.ingeniouslearn.com/blog" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog - Ingenious Learn" />
+        <meta name="twitter:description" content="Get the latest updates, resources, and guides from Ingenious Learn on various educational topics." />
+        <meta name="twitter:image" content="/images/blog-banner.jpg" />
+      </head>
       <div className="et_pb_module et_pb_fullwidth_image et_pb_fullwidth_image_0">
         <img src="/images/infosectrain-Blog-2023.webp" alt="blog-banner" width="100%" loading="lazy" />
       </div>

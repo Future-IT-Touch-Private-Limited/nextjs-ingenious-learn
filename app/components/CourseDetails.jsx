@@ -193,9 +193,10 @@ const CourseDetails = () => {
                 >
                   All Courses
                 </li>
-                {tagsLink.map((tag) => {
+                {tagsLink.map((tag,index) => {
                   return (
                     <li
+                      key={index}
                       className={activeTab === tag.tag_name ? "active" : ""}
                       onClick={() => handleTabClick(tag.tag_name)}
                     >
@@ -401,7 +402,7 @@ const CourseDetails = () => {
 
                       //   console.log("Formatted Price:",formattedPrice);
                       return (
-                        <>
+                       
                           <div
                             key={index}
                             className="owl-item active"
@@ -477,7 +478,7 @@ const CourseDetails = () => {
                               </div>
                             </div>
                           </div>
-                        </>
+                     
                       );
                     })}
                   </div>

@@ -13,7 +13,8 @@ import {
 import axios from "axios";
 import { BaseLink } from "../config/ApiLink";
 
-import { Swal } from "sweetalert2";
+
+import Swal from 'sweetalert2';
 import Link from "next/link";
 
 const ContactUs = () => {
@@ -24,10 +25,11 @@ const ContactUs = () => {
   }, []);
 
   const [formData, setFormData] = useState({
-    name: "",
+  name: "",
     email: "",
     subject: "",
-    message: "",
+    phonenumber: "",
+    message: ""
   });
 
   const handleChange = (e) => {
@@ -68,17 +70,19 @@ const ContactUs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const { name, email, phonenumber } = userRes;
+    const { name, email, subject,message } = formData;
+    console.log(formData)
+    
     try {
-      // Send a POST request with the user data
       const response = await axios.post(`${BaseLink}/submitrespons`, {
         name,
         email,
-        phonenumber,
+        subject,
+        phonenumber:"123",
         message,
+        
       });
-
-      // If successful, show a SweetAlert confirmation
+      console.log(response.data)
       Swal.fire({
         title: "Success!",
         text: "Your form has been submitted successfully.",
@@ -86,12 +90,14 @@ const ContactUs = () => {
         confirmButtonText: "OK",
       });
 
-      setName(" ");
-      setEmail(" ");
-      setMessage(" ");
-      setphonenumber(" ");
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        phonenumber: "",
+        message: ""
+      })
 
-      setShow(false);
     } catch (error) {
       console.error("There was an error submitting the form:", error);
 
@@ -103,12 +109,13 @@ const ContactUs = () => {
         confirmButtonText: "OK",
       });
 
-      setName(" ");
-      setEmail(" ");
-      setMessage(" ");
-      setphonenumber(" ");
-
-      setShow(false);
+      setFormData({
+        name: "",
+    email: "",
+    subject: "",
+    phonenumber: "",
+    message: ""
+      })
     }
   };
 
@@ -130,6 +137,24 @@ const ContactUs = () => {
 
   return (
     <>
+     <head>
+        <title>Contact Us - Ingenious Learn</title>
+        <meta name="description" content="Get in touch with Ingenious Learn for any inquiries, feedback, or partnership opportunities." />
+        <meta name="robots" content="index, follow" />
+        
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Contact Us - Ingenious Learn" />
+        <meta property="og:description" content="Reach out to Ingenious Learn for any inquiries, support, or to learn more about our educational services." />
+        <meta property="og:image" content="/images/contact-us-banner.jpg" />
+        <meta property="og:url" content="https://www.ingeniouslearn.com/contact-us" />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Us - Ingenious Learn" />
+        <meta name="twitter:description" content="Contact Ingenious Learn for support, questions, or partnership opportunities." />
+        <meta name="twitter:image" content="/images/contact-us-banner.jpg" />
+      </head>
       <section className="rows bg-fixed privacy-banner">
         <div className="container">
           <div className="row">
@@ -229,46 +254,33 @@ const ContactUs = () => {
 
       <div className="container mb-5">
         <div className="row gaper justify-content-around">
-          <div className="col-12 col-lg-5 col-xl-4">
-            <div className="footer-two__left">
-              <div className="d-flex gap-3 section__content-cta">
-                <div className="logo">
-                  <Link href="/">
-                    {logo ? (
-                      <img
-                        src={`https://admin.ingeniouslearn.com/storage/${logo}`}
-                        alt="Logo"
-                        width="160"
-                        height="auto"
-                      />
-                    ) : (
-                      <img
-                        src="/images/Blue.webp"
-                        alt="Logo"
-                        width="160"
-                        height="40"
-                      />
-                    )}
-                  </Link>
-                </div>
-                <h2>
-                  <Link
-                    className="folks-text animated-text"
-                    href={`mailto:${email}`}
-                  >
-                    {email}
-                  </Link>
-                </h2>
-              </div>
-              <div className="paragraph mt-2">
-                <p>
-                  Welcome to our digital agency. We specialize in helping
-                  businesses like yours succeed online. From website design and
-                  development.
-                </p>
-              </div>
+        <div className="col-12 col-lg-5 col-xl-4">
+          <div className="footer-two__left">
+              <div className="d-flex gap-3 section__content-cta my-3">
+            <div className="logo">
+              <Link href="/">
+                <img 
+                  alt="Image"
+                  fetchpriority="high"
+                  width="160"
+                  height="40"
+                  decoding="async"
+                  style={{color: 'transparent'}}
+                 src="/images/Blue.webp"
+                />
+              </Link>
             </div>
+              <h2>
+                <Link className="folks-text animated-text" href={`mailto:${email}`}>
+                  {email} 
+                
+                </Link>
+              </h2>
+            </div>
+           
+
           </div>
+        </div>
           <div className="col-12 col-lg-7 col-xl-7">
             {Object.keys(links).length > 0 ? (
               <div className="social_contact">

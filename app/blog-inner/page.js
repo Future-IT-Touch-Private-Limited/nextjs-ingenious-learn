@@ -10,7 +10,24 @@ const BlogInner = () => {
   }, []);
 
   return (
+    
     <>
+
+<head>
+        <title>innerBlog - Ingenious Learn</title>
+        <meta name="description" content="Stay updated with the latest news, tips, and tutorials from Ingenious Learn on various educational topics." />
+        <meta name="robots" content="index, follow" />
+        
+       
+        <meta property="og:title" content={`innerBlog - Ingenious Learn`} />
+        
+        <meta property="og:type" content="article" />
+        
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`innerBlog - Ingenious Learn`} />
+        
+      </head>
       <div className="et_pb_module et_pb_fullwidth_image et_pb_fullwidth_image_0">
         <img src="/images/infosectrain-Blog-2023.webp" alt="blog-banner" width="100%" loading="lazy" />
       </div>

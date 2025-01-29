@@ -6,6 +6,11 @@ const page = ({params:{slug}}) => {
    
   return (
     <div>
+      <head>    
+      <title>{slug}</title>
+      <meta name="description" content={slug} />
+
+      </head>
     <CourseDetailsnew slug={slug}/>
 
      

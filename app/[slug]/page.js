@@ -32,7 +32,13 @@ export async function generateStaticParams() {
 const page = ({params:{slug}}) => {
 
   return (
-    <CEHv12  slug={slug}/>
+    <> 
+  
+    <CEHv12  slug={slug}/>  
+    </> 
+
+   
+  
   )
 }
 

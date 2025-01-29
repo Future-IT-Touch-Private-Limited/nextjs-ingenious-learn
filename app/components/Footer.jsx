@@ -125,14 +125,14 @@ const Footer = () => {
                     Contact Us
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     href="/privacy-policy"
                     className="font-weight-medium text-muted text-sm  cursor-pointer"
                   >
                     Our Privacy Policy
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
 
@@ -148,21 +148,29 @@ const Footer = () => {
               <ul className={`top-category ${isOpenOfferings ? "show" : ""}`}>
                 <li>
                   <Link href="/free-events" className="text-muted">
-                     Events
+                    Free Events
                   </Link>
                 </li>
-                
+
+                <li>
+                  <Link href="/training-calendar" className="text-muted">
+                    Training Calendar
+                  </Link>
+                </li>
+
                 <li>
                   <Link href="/blog" className="text-muted">
                     Blog
                   </Link>
                 </li>
                 
+                
                 <li>
-                  <Link href="/training-calendar" className="text-muted">
-                    Training Calendar
+                  <Link href="/courses" className="text-muted">
+                  Courses
                   </Link>
                 </li>
+             
               </ul>
             </div>
 
@@ -298,7 +306,7 @@ const Footer = () => {
           <section className=" mobile-hide-border">
             <div className="d-flex flex-column flex-md-row justify-content-center gap-2 align-items-center">
               <p className="text-xs text-muted text-center">
-                © 2011-2024, Future It Touch Private Limited. All Rights
+                © 2011-{new Date().getFullYear()}, Future It Touch Private Limited. All Rights
                 Reserved
               </p>
             </div>

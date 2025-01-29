@@ -603,7 +603,7 @@ const Navbar = () => {
                 className="megamenu-nav-link dropdown-toggle text-black"
                 href="/"
               >
-                about us
+                about us next up
               </Link>
               <ul className="drop-menu">
                 <li className="drop-menu-item">
@@ -632,13 +632,14 @@ const Navbar = () => {
               <Link
                 className="megamenu-nav-link dropdown-toggle text-black"
                 href="/"
-              >
-                 resources
+              >     
+
+                    free resources
               </Link>
               <ul className="drop-menu">
                 <li className="drop-menu-item text-black">
                   <Link href="/free-events">
-                    events
+                  <img src="/images/calendar.webp" alt="" className="mobile-images" />Free  events
                   </Link>
                 </li>
                 {/* <li className="drop-menu-item">
@@ -685,7 +686,7 @@ const Navbar = () => {
 
           </ul>
 
-          <div className="humberger-menu d-lg-none" onClick={toggleNav}>
+          {/* <div className="humberger-menu d-lg-none" onClick={toggleNav}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="29"
@@ -700,7 +701,7 @@ const Navbar = () => {
                 fill="#0071e3"
               ></path>
             </svg>
-          </div>
+          </div> */}
 
           <form className="nav-search-form d-lg-none" method="get">
             <div className="input-container">

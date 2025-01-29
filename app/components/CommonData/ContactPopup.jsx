@@ -3,6 +3,8 @@ import { useState } from "react";
 import axios from 'axios';
 import Swal from "sweetalert2";
 import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
 import { BaseLink } from "../../config/ApiLink";
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS

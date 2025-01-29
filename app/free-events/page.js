@@ -70,6 +70,22 @@ const formatDate = (dateStr) => {
 
   return (
     <>
+     <head>
+        <title>Free Events - Ingenious Learn</title>
+        <meta name="description" content="Discover upcoming free events hosted by Ingenious Learn, including webinars, workshops, and more." />
+        <meta name="robots" content="index, follow" />
+        
+        <meta property="og:title" content="Free Events - Ingenious Learn" />
+        <meta property="og:description" content="Check out the latest free events at Ingenious Learn and register to join our educational workshops and webinars." />
+        <meta property="og:image" content="/images/free-events-banner.jpg" />
+        <meta property="og:url" content="https://www.ingeniouslearn.com/free-events" />
+        <meta property="og:type" content="website" />
+      
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Events - Ingenious Learn" />
+        <meta name="twitter:description" content="Join our free educational webinars and workshops hosted by Ingenious Learn." />
+        <meta name="twitter:image" content="/images/free-events-banner.jpg" />
+      </head>
      <div className="rows bg2 banner2">
       <img 
         src="/images/eventwebpagebanner.webp"

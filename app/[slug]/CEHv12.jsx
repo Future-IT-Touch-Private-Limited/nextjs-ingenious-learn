@@ -1,6 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 import { FaBriefcase } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -98,6 +101,8 @@ const AccordionItem = ({ module, index, isOpen, onClick }) => {
 //
 
 const CEHv12 = ({ slug }) => {
+  const router = useRouter();
+
   const [hasApplied, setHasApplied] = useState(false);
   // const [stuID, setStuId] = useState(null);
   const [expanded, setExpanded] = useState(false);
@@ -232,7 +237,6 @@ const CEHv12 = ({ slug }) => {
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
-  const router = useRouter();
 
   const dispatch = useDispatch();
   const course = useSelector((state) => state.courses?.selectedCourse);
@@ -400,7 +404,16 @@ const CEHv12 = ({ slug }) => {
   }, [sectionIds]);
 
   if (!course) {
-    return <div>Loading...</div>;
+    return  <div>
+    <Skeleton height={30} width={200} style={{ marginBottom: "10px" }} />
+    <Skeleton count={5} height={20} width={"100%"} />
+    <Skeleton count={4} height={20} width={"100%"} />
+    <Skeleton count={5} height={20} width={"100%"} />
+    <Skeleton count={5} height={20} width={"100%"} />
+    <Skeleton count={5} height={20} width={"100%"} />
+    <Skeleton count={5} height={20} width={"100%"} />
+    <Skeleton count={5} height={20} width={"100%"} />
+  </div>;
   }
 
   const modifyHtmlContent = (html) => {
@@ -499,19 +512,15 @@ const CEHv12 = ({ slug }) => {
   const handleAddToCartNew = () => {
 
 
-    if (!stuID) {
-      setIsModalOpen(true);
-    } else if (course?.trainingCalendars <= 0) {
-      router.push(`/cart`);
-    } else {
-      router.push(`/${course.slug}/schedule`);
-    }
+        router.push(`/schedule/${course.slug}`)
 
- 
+    console.log(`friday check sliug value >> /schedule/${course.slug}`);
 
-    // navigate(`/${course.slug}/schedule`);
-  };
+   };
 
+
+
+  
   const switchTab = (tab) => {
     setActiveTabNav(tab);
   };
@@ -600,10 +609,12 @@ const CEHv12 = ({ slug }) => {
     );
   };
 
+  console.log(course,"course")
+
   return (
     <>
       <head>
-      <title>{course?.meta_title ? course.meta_title : "Title is loading"}</title>
+      <title>{course?.meta_title ? course.meta_title : slug}</title>
       <meta name="description" content={course?.meta_description ? course.meta_description : "Description is loading"} />
 
       </head>
@@ -1298,7 +1309,7 @@ const CEHv12 = ({ slug }) => {
                                           onClick={() => handleAddToCartNew()}
                                           className="btn btn-primary  text-white px-4 w-100 w-md-auto h-100"
                                         >
-                                          Enroll Now
+                                          Enroll Now 
                                         </button>
                                       </div>
                                     </div>

@@ -110,7 +110,7 @@ function Trainee() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
+    console.log(formData)
 
     try {
       const response = await axios.post(`${BaseLink}/contacts`, formData);
@@ -152,7 +152,25 @@ function Trainee() {
     });
   };
 
-  return (
+  return (<>
+   <head>
+        <title>Business Solutions - Ingenious Learn</title>
+        <meta name="description" content="Discover business solutions offered by Ingenious Learn to help your company achieve its goals through innovative learning strategies and customized training programs." />
+        <meta name="robots" content="index, follow" />
+        
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Business Solutions - Ingenious Learn" />
+        <meta property="og:description" content="Explore our customized business solutions that help organizations improve employee skills, productivity, and growth through tailored educational programs." />
+        <meta property="og:image" content="/images/business-solutions-banner.jpg" />
+        <meta property="og:url" content="https://www.ingeniouslearn.com/business-solutions" />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Business Solutions - Ingenious Learn" />
+        <meta name="twitter:description" content="Learn about Ingenious Learn's business solutions designed to enhance workplace training, development, and overall organizational performance." />
+        <meta name="twitter:image" content="/images/business-solutions-banner.jpg" />
+      </head>
     <div className="">
       <section
         className="bggradian d-flex flex-column gap-4 align-items-center py-5 px-4 "
@@ -377,6 +395,7 @@ function Trainee() {
         </section>
       </div>
     </div>
+    </>
   );
 }
 

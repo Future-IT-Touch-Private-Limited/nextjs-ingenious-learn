@@ -30,6 +30,19 @@ const AboutUs = () => {
 
   return (
     <>
+    <head>
+        <title>About Us - ingenious learn</title>
+        <meta name="description" content="Learn more about ingenious-learn, our mission, and our values." />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="About Us - ingenious-learn" />
+        <meta property="og:description" content="Discover who we are and what we stand for at My Company." />
+        <meta property="og:image" content="/images/about-us-banner.jpg" />
+        <meta property="og:url" content="https://www.mycompany.com/about" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Us - My Company" />
+        <meta name="twitter:description" content="Get to know My Company and our story." />
+        <meta name="twitter:image" content="/images/about-us-banner.jpg" />
+      </head>
       <section className=" about-us-banner static-banner text-center">
         <div className="container">
           <h1 className="">About Us</h1>

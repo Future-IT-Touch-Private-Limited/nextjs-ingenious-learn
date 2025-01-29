@@ -1,4 +1,4 @@
-import MainComp from "./MainComp";
+import MainComp from "../MainComp";
 
 
 import axios from 'axios'
@@ -28,13 +28,18 @@ export async function generateStaticParams() {
 
 
 
-function page() {
+function page({params:{slug}}) {
  
   return (
     <>
-     <MainComp/>
+   
+     <MainComp slug={slug}/>
+        
+
     </>
   );
 }
 
 export default page;
+
+

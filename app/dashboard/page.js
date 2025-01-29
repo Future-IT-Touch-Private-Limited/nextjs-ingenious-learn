@@ -16,6 +16,8 @@ import {
   fetchCities,
 } from "../features/locationData/locationSlicer";
 import { getUserById } from "../features/user/authSlice";
+import Swal from 'sweetalert2';
+
 
 const PopupForm = ({ show, handleClose, onSubmit, userById }) => {
   const dispatch = useDispatch();
@@ -321,7 +323,7 @@ const PopupForm = ({ show, handleClose, onSubmit, userById }) => {
             </Col>
           </Row>
 
-          <Button variant="primary" type="submit" className="mt-4">
+          <Button variant="primary" type="submit" className="mt-4" >
             Submit
           </Button>
         </Form>
@@ -331,6 +333,7 @@ const PopupForm = ({ show, handleClose, onSubmit, userById }) => {
 };
 
 export default function Myacc() {
+
   const dispatch = useDispatch();
   const { userById, status } = useSelector((state) => state.auth);
   const [stuID, setStuId] = useState();
@@ -416,9 +419,23 @@ export default function Myacc() {
         }
       );
 
+        Swal.fire({
+              title: "Success!",
+              text: " Your Profile is has been Created successfully.",
+              icon: "success",
+              confirmButtonText: "OK",
+            });
 
+      window.location.reload();
       handleClose();
     } catch (error) {
+         Swal.fire({
+              title: "Error!",
+              text: "There was an error Creating your Profile.",
+              icon: "error",
+              confirmButtonText: "OK",
+            });
+      
       console.error("Error submitting form:", error);
     }
   };
@@ -431,8 +448,32 @@ export default function Myacc() {
     return <div>Loading...</div>;
   }
 
+
+  const logoutUser = () => {
+    localStorage.removeItem("student_id");
+
+    window.location.reload();
+
+    setStuId();
+  };
+
+  console.log(userById,"shu")
   return (
     <>
+    <Head>
+        <title>Dashboard - Ingenious Learn</title>
+        <meta name="description" content="Your personal dashboard to manage courses, track progress, and access your learning resources." />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta property="og:title" content="Dashboard - Ingenious Learn" />
+        <meta property="og:description" content="Track your progress and manage your courses on Ingenious Learn." />
+        <meta property="og:image" content="/images/dashboard-banner.jpg" />
+        <meta property="og:url" content="https://www.ingeniouslearn.com/dashboard" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Dashboard - Ingenious Learn" />
+        <meta name="twitter:description" content="Track your learning journey and manage your courses on Ingenious Learn." />
+        <meta name="twitter:image" content="/images/dashboard-banner.jpg" />
+      </Head>
       <div className="container mt-5">
         <div className="row p-3">
           <div
@@ -513,7 +554,7 @@ export default function Myacc() {
                 <div className="text-center px-3">
                   <h3>Your Profile is Empty</h3>
                   <p>
-                    Complete your profile now and unlock personalized career
+                    Complete your profile  now and unlock personalized career
                     opportunities and guidance tailored just for you!
                   </p>
 
@@ -559,9 +600,9 @@ export default function Myacc() {
                     <Tab.Content className="tab-content-custom p-4 flex-grow-1">
                       <Tab.Pane eventKey="my-profile">
                         <h4 className="mb-3">User Information</h4>
-                        <p>Name: John Doe</p>
-                        <p>Last Name: Doe</p>
-                        <p>Email: john.doe@example.com</p>
+                        <p>Name: {userById.name}</p>
+                        <p>Last Name: {userById.last_name}</p>
+                        <p>Email: {userById.email}</p>
                       </Tab.Pane>
 
                       <Tab.Pane eventKey="my-course">
@@ -578,7 +619,7 @@ export default function Myacc() {
                       <Tab.Pane eventKey="logout">
                         <h4 className="mb-3">Logout</h4>
                         <p>Click the button below to logout:</p>
-                        <Button variant="danger">Logout</Button>
+                        <Button variant="danger" onClick={() => logoutUser()}>Logout</Button>
                       </Tab.Pane>
                     </Tab.Content>
                   </Tab.Container>

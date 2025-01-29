@@ -1,5 +1,7 @@
 import React,{useState} from "react";
-import { BaseLink } from "../../config/ApiLink";
+// import { BaseLink } from "../config/ApiLink";
+import { BaseLink } from "../config/ApiLink";
+
 import { useDispatch, useSelector } from "react-redux";
 import Swal from 'sweetalert2'
 
@@ -85,10 +87,11 @@ export default function Formlogin({toggleModal}) {
 
   return (
     <>
+     
+
       <div
           className="modal show d-block"
-          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-        >
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
@@ -109,8 +112,7 @@ export default function Formlogin({toggleModal}) {
                     onClick={() => switchTab("signup")}
                     className={`nav-link ${activeTabNav === "signup" ? "active" : ""
                       }`}
-                  >
-                    Sign Up
+                  >Sign Up
                   </button>
                 </div>
 
@@ -155,17 +157,7 @@ export default function Formlogin({toggleModal}) {
                     </button>
                   </form>
 
-                  {/* <div className="text-center mb-4 position-relative">
-                    <hr className="my-4" />
-                    <span className="position-absolute top-50 start-50 translate-middle bg-white px-2">
-                      OR
-                    </span>
-                  </div>
-
-                  <button className="google-btn btn border w-100 d-flex justify-content-center align-items-center">
-                    <img src={fav} alt="" className="me-2 w-10" />
-                    Continue with Google
-                  </button> */}
+                 
                 </div>
               </div>
             </div>

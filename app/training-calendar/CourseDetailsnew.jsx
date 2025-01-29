@@ -10,17 +10,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchCourses } from "../features/courses/courseSlice";
 import { fetechTags } from "../features/tagsData/tagSlicer";
-import { useParams, useLocation } from 'react-router-dom';
+// import { useParams, useLocation } from 'react-router-dom';
 import Link from "next/link";
 
-const CourseDetailsnew = () => {
+const CourseDetailsnew = ({slug}) => {
   const [activeTab, setActiveTab] = useState("All Courses");
   const [coursePrice, setCoursePrice] = useState();
 
-  const { slug } = useParams();
+  // const { slug } = useParams();
   // const handleTabClick = (index) => {
   //   setActiveTab(index);
   // };
+  
   const containerRef = useRef(null);
 
 
@@ -401,7 +402,7 @@ const CourseDetailsnew = () => {
                                     </div>
                                   </div>
                                   <p className="moreCourseDetails">
-                                    {course.name}
+                                    {course.name} 
                                   </p>
                                   <div className="course-content">
                                     {parse(
@@ -464,6 +465,7 @@ const CourseDetailsnew = () => {
           </div>
         </div>
       </section>
+      <div class="mt-90" ></div>
     </>
   );
 };

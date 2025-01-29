@@ -11,7 +11,8 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCourseByMainId } from "../../features/courses/courseSlice";
+// import { fetchCourseByMainId } from "../features/courses/courseSlice";
+import { fetchCourseByMainId } from "../features/courses/courseSlice";
 
 export default function TrainCardData({ data, crname, handleAddToCart }) {
 
@@ -124,7 +125,7 @@ export default function TrainCardData({ data, crname, handleAddToCart }) {
   );
 
   // Format the price, using the appropriate currency
-  const currencyCode = countryPrice?.country_id || "USD"; // Use the found country's currency, default to USD if not found
+  const currencyCode = countryPrice?.country_id || "USD";
   
   const formattedPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -168,12 +169,12 @@ export default function TrainCardData({ data, crname, handleAddToCart }) {
 
   return (
     <>
-      <div class="card border-primary-shadow my-3">
-        <div class="card-body p-4">
-          <div class="row  justify-content-between">
+      <div className="card border-primary-shadow my-3">
+        <div className="card-body p-4">
+          <div className="row  justify-content-between">
             <div className="col-12 col-md-4 mb-3 mb-md-0">
-              <span class="btn text-success text-center bg-light border border-success my-2 py-1 px-3 rounded-pill ">
-                <LuCloudSun class="me-2 text-success" />
+              <span className="btn text-success text-center bg-light border border-success my-2 py-1 px-3 rounded-pill ">
+                <LuCloudSun className="me-2 text-success" />
                 <span className="mx-1">{timeOfDay}</span>
               </span>
               <h4 className="font-weight-bold">
@@ -203,9 +204,7 @@ export default function TrainCardData({ data, crname, handleAddToCart }) {
               <div className="d-flex w-100 flex-column flex-md-row justify-content-between align-items-center">
                 <div className="d-flex w-100 flex-column gap-2 mb-3 mb-md-0">
                   <div className="text-xxs font-weight-bold text-success">
-                    {countryPrice?.price === undefined
-                      ? ""
-                      : `${countryDISPrice?.discount_percentage}% OFF`}
+                    { countryDISPrice?.discount_percentage &&   `${countryDISPrice?.discount_percentage}% OFF`}
                   </div>
                   <div className="d-flex align-items-center">
                     <h3 className="text-xl font-weight-bold text-dark">
@@ -217,7 +216,7 @@ export default function TrainCardData({ data, crname, handleAddToCart }) {
                     </h3>
                     <h4 className="text-xs mx-1 pl-2 text-muted text-decoration-line-through">
                       {/* {formatCurrency(crname.tuition_fees[0].course_fee)} */}
-                      {countryPrice?.price == undefined ? "" : formattedPrice}
+                      {countryDISPrice?.discount_percentage &&formattedPrice }
                     </h4>
                   </div>
                   <div className="d-flex gap-2 align-items-center">
@@ -235,8 +234,8 @@ export default function TrainCardData({ data, crname, handleAddToCart }) {
                     </button>
                   </div>
                   <div>
-                    <span class="btn text-success d-inline-flex align-items-center  text-center bg-light border border-grey shadow-1 my-2 py-1 px-3 rounded-pill ">
-                      <MdWatchLater class="me-1 fs-4  text-warning bg-gradient" />
+                    <span className="btn text-success d-inline-flex align-items-center  text-center bg-light border border-grey shadow-1 my-2 py-1 px-3 rounded-pill ">
+                      <MdWatchLater className="me-1 fs-4  text-warning bg-gradient" />
                       <span className="mx-1 font-weight-bolder text-black">
                         <b>Only few seats left!</b>{" "}
                       </span>
@@ -249,7 +248,7 @@ export default function TrainCardData({ data, crname, handleAddToCart }) {
             <div className="col-12 col-md-2 my-auto">
               <div className="">
                 <button
-                  onClick={handleAddToCart}
+                  onClick={()=>handleAddToCart(data)}
                   className="btn btn-dark text-white px-4 w-100 w-md-auto h-100"
                 >
                   Enroll Now

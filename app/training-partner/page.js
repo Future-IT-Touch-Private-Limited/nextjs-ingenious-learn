@@ -1,8 +1,20 @@
 "use client";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { BaseLink } from "../config/ApiLink";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 const FormMain = () => {
+  const router = useRouter();
+
+  // useEffect(() => {
+  //   if (router.isReady) {
+  //     console.log(router.query);
+  //   }
+  // }, [router]);
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -14,10 +26,36 @@ const FormMain = () => {
     phone: "",
     primary_interest_id: "",
     training_interest_id: "",
+
     query: "",
     agree_gdpr: false,
     whatsapp_subscription_status: true,
   });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData);
+    try {
+      const response = await axios.post(`${BaseLink}/contact-form`, formData);
+      console.log(response);
+
+      Swal.fire(
+        "Success",
+        "User details submitted successfully",
+        "success"
+      ).then(() => {
+        router.push("/");
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      Swal.fire({
+        title: "Error!",
+        text: "There was an error submitting your form. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -27,17 +65,30 @@ const FormMain = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <>
-      <section className="rows bg-fixed privacy-banner">
+    <head>
+        <title>Training Partners - Ingenious Learn</title>
+        <meta name="description" content="Discover our trusted training partners who help us deliver top-quality learning experiences at Ingenious Learn." />
+        <meta name="robots" content="index, follow" />
+        
+        <meta property="og:title" content="Training Partners - Ingenious Learn" />
+        <meta property="og:description" content="Meet our training partners who collaborate with Ingenious Learn to provide high-quality courses and workshops." />
+        <meta property="og:image" content="/images/training-partner-banner.jpg" />
+        <meta property="og:url" content="https://www.ingeniouslearn.com/training-partner" />
+        <meta property="og:type" content="website" />
+      
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Training Partners - Ingenious Learn" />
+        <meta name="twitter:description" content="Discover our trusted training partners at Ingenious Learn who help provide top-tier educational content and experiences." />
+        <meta name="twitter:image" content="/images/training-partner-banner.jpg" />
+    </head>
+    
+    <section className="rows bg-fixed privacy-banner">
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-md-7">
@@ -52,12 +103,12 @@ const FormMain = () => {
         </div>
       </section>
 
-      <section className="breadcrumbs-main">
+     <section className="breadcrumbs-main">
         {" "}
         <div className="container">
           <ul id="breadcrumb" className="breadcrumb">
             <li className="item-home">
-              <Link className="bread-link bread-home" href="" title="Home">
+              <Link className="bread-link bread-home" href="/" title="Home">
                 Home
               </Link>
             </li>
@@ -131,9 +182,6 @@ const FormMain = () => {
         </div>
       </div>
 
-
-
-
       <div className="container">
         <div className="contact-us-form">
           <div className="bg-shadow no-modal-form">
@@ -147,32 +195,31 @@ const FormMain = () => {
                     name: "first_name",
                     label: "First name",
                     iconClass: "icon-fullname",
-                    placeholder: "Enter your Name",
+                    placeholder: "Enter your First Name ",
                   },
                   {
                     name: "last_name",
                     label: "Last name",
                     iconClass: "icon-fullname",
-                    placeholder: "Enter your Name",
+                    placeholder: "Enter your Last Name",
                   },
                   {
                     name: "job_title",
                     label: "Job Title",
                     iconClass: "icon-fullname",
-                    placeholder: "Enter your Name",
+                    placeholder: "Enter your Job Title",
                   },
                   {
                     name: "email",
                     label: "E-mail",
                     iconClass: "icon-email",
-
-                    placeholder: "Enter your Name",
+                    placeholder: "Enter your Email",
                   },
                   {
                     name: "company",
                     label: "Company",
                     iconClass: "icon-fullname",
-                    placeholder: "Enter your Name",
+                    placeholder: "Enter your Company",
                   },
                 ].map((input) => (
                   <div className="col-md-6 col-sm-6" key={input.name}>
@@ -205,20 +252,26 @@ const FormMain = () => {
                         value={formData.best_classifies_id}
                         onChange={handleChange}
                       >
-                        <option value="" selected>
+                        <option value="Best Classifies Your Org" defaultValue>
                           Best Classifies Your Org
                         </option>
-                        <option value="1">Corporate</option>
-                        <option value="2">Training Company</option>
-                        <option value="3">IT Vendor(HW/SW)</option>
-                        <option value="4">IT Service Provider</option>
-                        <option value="5">System Integrator</option>
-                        <option value="6">Consultancy</option>
-                        <option value="7">Reseller</option>
-                        <option value="8">University</option>
-                        <option value="9">Government</option>
-                        <option value="10">Trainer</option>
-                        <option value="11">Other</option>
+                        <option value="Corporate">Corporate</option>
+                        <option value="Training Company">
+                          Training Company
+                        </option>
+                        <option value="IT Vendor">IT Vendor(HW/SW)</option>
+                        <option value="IT Service Provider">
+                          IT Service Provider
+                        </option>
+                        <option value="System Integrator">
+                          System Integrator
+                        </option>
+                        <option value="Consultancy">Consultancy</option>
+                        <option value="Reseller">Reseller</option>
+                        <option value="University">University</option>
+                        <option value="Government">Government</option>
+                        <option value="Trainer">Trainer</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
                   </div>
@@ -234,31 +287,33 @@ const FormMain = () => {
                         value={formData.city_id}
                         onChange={handleChange}
                       >
-                        <option value="">Select City</option>
-                        <option value="15">Bangalore</option>
-                        <option value="533">Lucknow</option>
-                        <option value="25">Pune</option>
-                        <option value="20">Hyderabad</option>
-                        <option value="16">Chennai</option>
-                        <option value="23">Mumbai</option>
-                        <option value="18">Delhi</option>
-                        <option value="22">Kolkata</option>
-                        <option value="14">Ahmedabad</option>
-                        <option value="17">Cochin</option>
-                        <option value="19">Gurgaon</option>
-                        <option value="21">Chandigarh</option>
-                        <option value="24">Noida</option>
-                        <option value="26">Trivandrum</option>
-                        <option value="27">Visakhapatnam</option>
-                        <option value="541">Patna</option>
-                        <option value="418">Indore</option>
-                        <option value="455">Bhubaneswar</option>
-                        <option value="459">Jaipur</option>
-                        <option value="467">Vadodara</option>
-                        <option value="468">Coimbatore</option>
-                        <option value="214">Surat</option>
-                        <option value="473">Goa</option>
-                        <option value="477">Nashik</option>
+                        <option value="" defaultValue>
+                          Select City
+                        </option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Lucknow">Lucknow</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Ahmedabad">Ahmedabad</option>
+                        <option value="Cochin">Cochin</option>
+                        <option value="Gurgaon">Gurgaon</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Noida">Noida</option>
+                        <option value="Trivandrum">Trivandrum</option>
+                        <option value="Visakhapatnam">Visakhapatnam</option>
+                        <option value="Patna">Patna</option>
+                        <option value="Indore">Indore</option>
+                        <option value="Bhubaneswar">Bhubaneswar</option>
+                        <option value="Jaipur">Jaipur</option>
+                        <option value="Vadodara">Vadodara</option>
+                        <option value="Coimbatore">Coimbatore</option>
+                        <option value="Surat">Surat</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Nashik">Nashik</option>
                       </select>
                     </div>
                   </div>
@@ -270,6 +325,7 @@ const FormMain = () => {
                       className="form-control"
                       maxLength="100"
                       name="phone"
+                      placeholder="Phone Number"
                       value={formData.phone}
                       onChange={handleChange}
                       onKeyPress={(e) => {
@@ -302,27 +358,37 @@ const FormMain = () => {
                         value={formData.primary_interest_id}
                         onChange={handleChange}
                       >
-                        <option value="" selected>
+                        <option value="" defaultValue>
                           Primary Interest
                         </option>
-                        <option value="1">
+                        <option value="Become an Knowledgehut Exam Center">
                           Become an Knowledgehut Exam Center
                         </option>
-                        <option value="2">
+                        <option value="Become an Knowledgehut Partner/Reseller">
                           Become an Knowledgehut Partner/Reseller
                         </option>
-                        <option value="3">
+                        <option value="Become an Knowledgehut Instructor">
                           Become an Knowledgehut Instructor
                         </option>
-                        <option value="4">Become a content Partner</option>
-                        <option value="5">Become an Affiliate</option>
-                        <option value="6">
+                        <option value="Become a content Partner">
+                          Become a content Partner
+                        </option>
+                        <option value="Become an Affiliate">
+                          Become an Affiliate
+                        </option>
+                        <option value=" Discuss Training Needs For My Organization">
                           Discuss Training Needs For My Organization
                         </option>
-                        <option value="7">License eLearning Library</option>
-                        <option value="8">License eLearning Material</option>
-                        <option value="9">License Training Material</option>
-                        <option value="10">Other</option>
+                        <option value="License eLearning Library">
+                          License eLearning Library
+                        </option>
+                        <option value="License eLearning Material">
+                          License eLearning Material
+                        </option>
+                        <option value="License Training Material">
+                          License Training Material
+                        </option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
                   </div>
@@ -338,16 +404,16 @@ const FormMain = () => {
                         value={formData.training_interest_id}
                         onChange={handleChange}
                       >
-                        <option value="" selected>
+                        <option value="" defaultValue>
                           Training Interest
                         </option>
-                        <option value="1">
+                        <option value="I Am Looking For Training For Myself">
                           I Am Looking For Training For Myself
                         </option>
-                        <option value="2">
+                        <option value="I Am Looking For Training For My Team">
                           I Am Looking For Training For My Team
                         </option>
-                        <option value="3">
+                        <option value="I Am Looking For Training For My Customers">
                           I Am Looking For Training For My Customers
                         </option>
                       </select>
@@ -392,14 +458,16 @@ const FormMain = () => {
                   </p>
                 </div>
               </div>
-                    <div className="d-flex  justify-content-center mt-5 ">
-                    <button
-                type="submit"
-                className="btn-send-training-partner waves-effect waves-light  "
-              >
-                <span>Send</span> <img src="/images/right-arrow-icon.webp" alt="" />
-              </button>
-                    </div>
+
+              <div className="d-flex  justify-content-center mt-5 ">
+                <button
+                  type="submit"
+                  className="btn-send-training-partner waves-effect waves-light  "
+                >
+                  <span>Send</span>{" "}
+                  <img src="/images/right-arrow-icon.webp" alt="" />
+                </button>
+              </div>
             </form>
           </div>
         </div>

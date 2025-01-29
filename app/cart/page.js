@@ -358,7 +358,21 @@ function Cardpage() {
 
     
 
-  return (
+  return (<> 
+  <head>
+    <title>Cart - Ingenious Learn</title>
+    <meta name="description" content="Review your cart and proceed to checkout to purchase educational courses from Ingenious Learn." />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Cart - Ingenious Learn" />
+    <meta property="og:description" content="Your cart contains courses you have selected. Proceed to checkout to complete your purchase." />
+    <meta property="og:image" content="/images/cart-banner.jpg" />
+    <meta property="og:url" content="https://www.ingeniouslearn.com/cart" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cart - Ingenious Learn" />
+    <meta name="twitter:description" content="Check your cart and get ready to complete your purchase for educational courses at Ingenious Learn." />
+    <meta name="twitter:image" content="/images/cart-banner.jpg" />
+  </head>
     <div className="container mt-5">
       <Row>
         <Col md={8} className="mb-4">
@@ -672,6 +686,7 @@ function Cardpage() {
         </Col>
       </Row>
     </div>
+    </>
   );
 }
 

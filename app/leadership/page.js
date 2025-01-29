@@ -24,14 +24,28 @@ const page = () => {
     if (status === "idle") {
       dispatch(fetchTeamLinks());
     }
-  }, [status, dispatch]);
+  }, [status, dispatch]); 
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  },   []);
 
   return (
-    <>
+    <> 
+   <head>
+    <title>Leadership - Ingenious Learn</title>
+    <meta name="description" content="Meet the leadership team at Ingenious Learn, the visionaries and experts behind our platform." />
+    <meta name="robots" content="index, follow" />
+
+   
+    <meta property="og:title" content="Leadership - Ingenious Learn" />
+    <meta property="og:description" content="Discover the leadership team at Ingenious Learn, including the founders and key executives shaping the future of online education." />
+    <meta property="og:image" content="/images/leadership-banner.jpg" />
+    <meta property="og:url" content="https://www.ingeniouslearn.com/leadership" />
+    <meta property="og:type" content="website" />
+  
+  </head>
+
       <section className="rows bg-fixed team-banner">
         <div className="container">
           <div className="row">
@@ -59,13 +73,12 @@ const page = () => {
           </ul>
         </div>
       </section>
-
       <div className="expert-wrap">
-        <div className="container">
-          <div className="title title_center">
+      <div className="container">
+       <div className="title title_center">
             <h1>Our Experts</h1>
           </div>
-          <div className="row">
+      <div className="row">
             {teamlink?.map((expert, index) => (
               <div className="col-lg-3 col-md-6" key={index}>
                 <div className="experts">
@@ -103,11 +116,11 @@ const page = () => {
                 </div>
               </div>
             ))}
-          </div>
+                      </div>
         </div>
       </div>
 
-      {/* <Testimonial /> */}
+     
     </>
   );
 };
